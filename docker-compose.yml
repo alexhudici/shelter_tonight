@@ -1,19 +1,29 @@
-app:
-  build: .
-  environment:
-    RAILS_ENV: development
-    DATABASE_URL: mysql2://root:root@mysql/rails
-  ports:
-  - "13000:3000"
-  volumes:
-  - ".:/var/www/app"
-  links:
-  - "mysql:mysql"
-mysql:
-  image: mysql
-  environment:
-    MYSQL_ROOT_PASSWORD: root
-    MYSQL_DATABASE: rails
-redis:
-  image: redis
-  
+version: "2.1"
+
+services:
+    mysql:
+      image: mysql:latest
+      volumes_from:
+          - data
+      environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: shelter_tonight
+          MYSQL_USER: shelter_tonight
+          MYSQL_PASSWORD: shelter_tonight
+      ports:
+        - 3306:3306
+      expose:
+        - 3306
+
+    redis:
+      image: redis:latest
+      ports:
+        - 6379:6379
+      expose:
+        - 6379
+
+    data:
+        image: mysql:latest
+        volumes:
+            - /var/lib/mysql
+        command: "true"

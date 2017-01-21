@@ -1,18 +1,14 @@
 FROM ruby:2.4.0
 
-RUN apt-get update && apt-get -y install nodejs
-RUN gem install bundler
+RUN apt-get update -qq && apt-get install -y build-essential nodejs
 
-ADD Gemfile /tmp
-ADD Gemfile.lock /tmp
+RUN mkdir /app
 
 WORKDIR /tmp
-
+COPY Gemfile Gemfile
+COPY Gemfile.lock Gemfile.lock
 RUN bundle install
 
-ADD . /var/www/app
+WORKDIR /app
 
-WORKDIR /var/www/app
-
-EXPOSE 3000
-CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
+CMD ["rails", "server", "-b", "0.0.0.0"]
