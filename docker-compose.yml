@@ -1,0 +1,19 @@
+app:
+  build: .
+  environment:
+    RAILS_ENV: development
+    DATABASE_URL: mysql2://root:root@mysql/rails
+  ports:
+  - "13000:3000"
+  volumes:
+  - ".:/var/www/app"
+  links:
+  - "mysql:mysql"
+mysql:
+  image: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_DATABASE: rails
+redis:
+  image: redis
+  
