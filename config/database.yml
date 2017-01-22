@@ -13,20 +13,18 @@ default: &default
 
 development:
   <<: *default
-  host: 192.168.99.100
   database: shelter_tonight
   username: root
-  password: root
+  password: shelter_tonight
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  host: 192.168.99.100
   database: shelter_tonight_test
   username: root
-  password: root
+  password: shelter_tonight
 
 production:
   <<: *default
