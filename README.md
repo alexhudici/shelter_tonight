@@ -25,3 +25,5 @@ On your local machine you should be able to run:
 ### Setting up ruby
 
 - We're running ruby `2.4.0` using [rbenv](https://github.com/rbenv/rbenv#installation).
+- [ruby-build](https://github.com/rbenv/ruby-build) is an rbenv plugin that provides an rbenv install command to compile and install different versions of Ruby on UNIX-like systems.
+- [rbenv wiki](https://github.com/rbenv/rbenv/wiki)
