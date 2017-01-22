@@ -24,4 +24,4 @@ On your local machine you should be able to run:
 
 ### Setting up ruby
 
-- We're running ruby `2.4.0` using [rbenv]().
+- We're running ruby `2.4.0` using [rbenv](https://github.com/rbenv/rbenv#installation).
