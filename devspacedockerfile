@@ -1,0 +1,26 @@
+# WIP not currently functional
+FROM ruby:2.4.0
+
+# fun to have programs, and also supervisor, only because we need to keep this container alive
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y install \
+      cron \
+      curl \
+      vim \
+      supervisor
+      
+# for package manager
+RUN apt-get update -qq && apt-get install -y build-essential nodejs
+
+RUN mkdir /app
+
+# ???
+WORKDIR /tmp
+COPY Gemfile Gemfile
+COPY Gemfile.lock Gemfile.lock
+RUN bundle install
+
+# ???
+WORKDIR /app
+
+CMD ["/usr/bin/supervisord", "-n"]
+#CMD ["rails", "server", "-b", "0.0.0.0"]
